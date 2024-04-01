@@ -12,6 +12,7 @@ function Content() {
     console.log(count);
   };
   console.log(count);
+  console.log(count);
   return (
     <div>
       <h1>{count}</h1>
