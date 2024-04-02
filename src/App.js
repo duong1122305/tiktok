@@ -1,14 +1,32 @@
-import { useState } from "react";
-import Content from "./Component";
+import userEvent from "@testing-library/user-event";
+import { useRef, useState, useEffect } from "react";
 
+function Content() {
+  const [count, setCount] = useState(60);
 
-function App() {
-  const [show, setShow] = useState(false)
- 
+  const timerId = useRef();
+
+  const prevCount = useRef() 
+
+  useEffect(() => {
+    prevCount.current = count
+  }, [count]);
+
+  const handleStart = () => {
+    timerId.current = setInterval(() => {
+      setCount((prev) => prev - 1);
+    }, 1000);
+  };
+
+  const handleStop = () => {
+    clearInterval(timerId.current);
+  };
+
   return (
-    <div style={{ padding: 32 }}>
-      <button onClick={() => setShow(!show)}>Show</button>
-      {show && <Content />}
+    <div>
+      <h1>{count}</h1>
+      <button onClick={handleStart}>Start</button>
+      <button onClick={handleStop}>Stop</button>
     </div>
   );
 }

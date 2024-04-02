@@ -1,22 +1,20 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useRef, useState } from "react";
 
 function Content() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(60)
 
-  useLayoutEffect(() => {
-    if (count > 3) setCount(0);
-  }, [count]);
+  const handleStart = () => {
 
-  const handleRun = () => {
-    setCount(count + 1);
-    console.log(count);
-  };
-  console.log(count);
-  console.log(count);
+  }
+
+  const handleStop = () => {
+
+  }
   return (
     <div>
       <h1>{count}</h1>
-      <button onClick={handleRun}>Run</button>
+      <button onClick={handleStart}>Start</button>
+      <button onClick={handleStop}>Stop</button>  
     </div>
   );
 }
